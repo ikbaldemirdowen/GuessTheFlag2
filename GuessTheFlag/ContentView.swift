@@ -57,12 +57,12 @@ struct ContentView: View {
     {
         if number == correctAnswer
         {
-            scoreTitle = "Correct"
+            scoreTitle = "Correct!"
             score += 1
         }
         else
         {
-            scoreTitle = "Wrong"
+            scoreTitle = "Wrong!"
         }
         showingScore = true
     }
