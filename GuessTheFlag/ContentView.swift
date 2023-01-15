@@ -17,33 +17,41 @@ struct ContentView: View {
     {
         ZStack
         {
-            LinearGradient(colors: [.red, .blue], startPoint: .top, endPoint: .bottom)
-            VStack(spacing : 10)
+            RadialGradient(colors: [.red, .blue, .yellow, .green, .purple, .mint, .pink, .brown, .indigo], center: .center, startRadius: 1, endRadius: 500)
+            VStack
             {
-                Text("Tap the flag of")
-                    .font(.largeTitle)
-                Text(countries[correctAnswer])
-                    .foregroundColor(.primary)
-                    .font(.largeTitle.weight(.semibold))
-                    
-                
-                VStack(spacing : 50)
-                {
-                    ForEach(0..<3)
-                    { number in
-                        Button()
-                        {
-                           flagTapped(number)
-                        } label: {
-                            Image(countries[number])
-                                .renderingMode(.original)
-                                .clipShape(Capsule())
-                                .shadow(radius: 50)
+                Text("Guess The Flag")
+                    .font(.largeTitle.bold())
+                    VStack(spacing : 10)
+                    {
+                        Text("Tap the flag of")
+                            .font(.largeTitle.weight(.semibold))
+                            .foregroundStyle(.secondary)
+                        Text(countries[correctAnswer])
+                            .foregroundStyle(.primary)
+                            .font(.largeTitle.weight(.heavy))
+                        ForEach(0..<3)
+                        { number in
+                            Button()
+                            {
+                                flagTapped(number)
+                            } label: {
+                                Image(countries[number])
+                                    .renderingMode(.original)
+                                    .clipShape(Capsule())
+                                    .shadow(radius: 99)
+                            }
+                            .padding()
                         }
                     }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 40)
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                Text("Score")
+                    .font(.largeTitle.bold())
                 }
             }
-        }
         .ignoresSafeArea()
         .alert(scoreTitle, isPresented: $showingScore)
         {
